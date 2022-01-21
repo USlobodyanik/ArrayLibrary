@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayLibrary", "ArrayLibrary\ArrayLibrary.csproj", "{E1C28A70-78DF-4336-B811-479438DDBAF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayTests", "ArrayTests\ArrayTests.csproj", "{29082547-9258-4B62-8E55-EA3F3B5318C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1C28A70-78DF-4336-B811-479438DDBAF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C28A70-78DF-4336-B811-479438DDBAF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C28A70-78DF-4336-B811-479438DDBAF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C28A70-78DF-4336-B811-479438DDBAF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29082547-9258-4B62-8E55-EA3F3B5318C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29082547-9258-4B62-8E55-EA3F3B5318C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29082547-9258-4B62-8E55-EA3F3B5318C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29082547-9258-4B62-8E55-EA3F3B5318C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE74BF36-4629-4873-84A3-7D3225999D68}
+	EndGlobalSection
+EndGlobal
