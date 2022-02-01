@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArrayLibrary
 {
-    public interface IArrayList
+    public interface IArrayList : IEnumerable<int>
     {
         void AddFront(int value);
         void AddBack(int value);

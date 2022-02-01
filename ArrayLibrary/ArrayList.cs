@@ -6,10 +6,10 @@ namespace ArrayLibrary
 {
     public class ArrayList : IArrayList
     {
-        private int[] _array;
-        private int _currentCount;
         private const double _arrayCoefficient = 1.33;
         private const int _defaultSizeArray = 5;
+        private int[] _array;
+        private int _currentCount;
 
         public int this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -32,34 +32,20 @@ namespace ArrayLibrary
                 _array[i] = array[i];
             }
         }
-        public void AddFront(int value)
-        {
-            AddByIndex(0, value);
-        }
+        public void AddFront(int value) => AddByIndex(0, value);
 
-        public void AddBack(int value)
-        {
-            UpdateSize();
-            _array[_currentCount++] = value;
-        }
+        public void AddBack(int value) => AddByIndex(_currentCount, value);
 
         public void AddBack(IArrayList arrayList)
         {
-            var array = arrayList.ToArray();
-            UpdateSize(array.Length);
-
-            for (int i = _currentCount, j = 0; j < array.Length; i++, j++)
-            {
-                _array[i] = array[j];
-            }
-
-            _currentCount += array.Length;
+            throw new NotImplementedException();
         }
 
         public void AddByIndex(int index, int value)
         {
-            UpdateSize(index);
-            for (int i = _currentCount; i < index; i--)
+            UpdateSize();
+
+            for (int i = _currentCount; i > index; i--)
             {
                 _array[i] = _array[i - 1];
             }
@@ -85,22 +71,66 @@ namespace ArrayLibrary
 
         public int Max()
         {
-            throw new NotImplementedException();
+            int maxIndex = MaxI();
+            int maxValue = _array[maxIndex];
+
+            return maxValue;
         }
 
         public int MaxI()
         {
-            throw new NotImplementedException();
+            int maxIndex = 0;
+            int maxValue = _array[0];
+
+            if (_currentCount == 1)
+            {
+                return maxIndex;
+            }
+            else
+            {
+                for (int i = 0; i < _currentCount - 1; i++)
+                {
+                    if (maxValue < _array[i + 1])
+                    {
+                        maxIndex = i + 1;
+                        maxValue = _array[i + 1];
+                    }
+                }
+            }
+
+            return maxIndex;
         }
 
         public int Min()
         {
-            throw new NotImplementedException();
+            int minIndex = MinI();
+            int minValue = _array[minIndex];
+
+            return minValue;
         }
 
         public int MinI()
         {
-            throw new NotImplementedException();
+            int minIndex = 0;
+            int minValue = _array[0];
+
+            if (_currentCount == 1)
+            {
+                return minIndex;
+            }
+            else
+            {
+                for (int i = 0; i < _currentCount - 1; i++)
+                {
+                    if (minValue > _array[i + 1])
+                    {
+                        minIndex = i + 1;
+                        minValue = _array[i + 1];
+                    }
+                }
+            }
+
+            return minIndex;
         }
 
         public int RemoveAll(int value)
@@ -108,19 +138,34 @@ namespace ArrayLibrary
             throw new NotImplementedException();
         }
 
-        public int[] RemoveBack(int count)
-        {
-            throw new NotImplementedException();
-        }
+        public int[] RemoveBack(int count) => RemoveByIndex(_currentCount, count);
 
         public int RemoveByIndex(int index)
         {
-            throw new NotImplementedException();
+            for (int i = index; i < _currentCount - 1; i++)
+            {
+                _array[i] = _array[i + 1];
+            }
+
+            _currentCount--;
+            return index;
         }
 
         public int[] RemoveByIndex(int index, int count)
         {
-            throw new NotImplementedException();
+            int[] removedArray = new int[count];
+            int overSize = index + count;
+
+            if (overSize < _currentCount)
+            {
+                for (int i = index, j=0; j < count; i++, j++)
+                {
+                    removedArray[j] = _array[i];
+                    _array[i] = _array[j + overSize];
+                }
+            }
+
+            return removedArray;
         }
 
         public int RemoveFirstValue(int value)
@@ -128,7 +173,7 @@ namespace ArrayLibrary
             throw new NotImplementedException();
         }
 
-        public int RemoveFromBack() => RemoveByIndex(_currentCount - 1);
+        public int RemoveFromBack() => RemoveByIndex(_currentCount);
 
         public int RemoveFromFront() => RemoveByIndex(0);
 
@@ -139,7 +184,7 @@ namespace ArrayLibrary
 
         public void Reverse()
         {
-            throw new NotImplementedException();
+            Array.Reverse(_array);
         }
 
         public void Sort(bool ascending = true)
@@ -177,6 +222,7 @@ namespace ArrayLibrary
             {
                 int newSize = (int)((_array.Length + countToAdd) * _arrayCoefficient);
                 int[] newArray = new int[newSize];
+
                 for (int i = 0; i < _currentCount; i++)
                 {
                     newArray[i] = _array[i];
